@@ -1,19 +1,17 @@
-// Create empty array to pass user input into, create empty password string
-var userInput = "";
-var password = "";
-
-// Create variables for password criteria
-var lowercaseInput = "abcdefghijklmnopqrstuvwxyz";
-var uppercaseInput = lowercaseInput.toUpperCase();
-var numericInput = "0123456789";
-var specialInput = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ";
-
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Write generatePassword function
-function generatePassword() {
-  // Prompt user for criteria input and append userInput array 
+function getCriteria() {
+  // Create empty array to pass user input into
+  var userInput = [];
+
+  // Create variables for password criteria
+  var lowercaseInput = "abcdefghijklmnopqrstuvwxyz";
+  var uppercaseInput = lowercaseInput.toUpperCase();
+  var numericInput = "0123456789";
+  var specialInput = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ";
+
+  // Prompt user for criteria input and append userInput array
   if (confirm("Do you want lowercase letters?")) {
     userInput.push(lowercaseInput);
   }
@@ -26,7 +24,14 @@ function generatePassword() {
   if (confirm("Do you want special characters?")) {
     userInput.push(specialInput);
   }
+  return userInput;
+}
 
+// Generage password
+function generatePassword() {
+  // Create empty password string
+  var password = "";
+  var getInputs = getCriteria();
   // Propmpt user to enter desired password length
   var passwordLengthInput = (prompt("Enter a numeric length greater than 8 and less than 128 characters."));
   var passwordLength = parseInt(passwordLengthInput);
@@ -41,12 +46,12 @@ function generatePassword() {
   }
 
   // Select random numbers for each index of passwordLength
-  for (var i = 0; i < passwordLength.length; i++) {
-    var randomInt = Math.floor(Math.random() * Math.floor(userInput.length));
-    userInput.split();
-    password = userInput
+  var randomInt;
+  for (i = 0; i < passwordLength.length; i++) {
+    randomInt = Math.floor(Math.random() * Math.floor(getInputs.length));
+    password += getInputs[randomInt];
   }
-
+  console.log(password.length);
   return password;
 }
 
