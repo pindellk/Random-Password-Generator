@@ -2,39 +2,40 @@
 var generateBtn = document.querySelector("#generate");
 
 function getCriteria() {
-  // Create empty array to pass user input into
-  var userInput = [];
+  // Create empty string to pass criteria into
+  var criteria = "";
 
   // Create variables for password criteria
-  var lowercaseInput = "abcdefghijklmnopqrstuvwxyz";
-  var uppercaseInput = lowercaseInput.toUpperCase();
-  var numericInput = "0123456789";
-  var specialInput = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ";
+  var lowerLetters = "abcdefghijklmnopqrstuvwxyz";
+  var upperLetters = lowerLetters.toUpperCase();
+  var numbers = "0123456789";
+  var specialChars = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ";
 
-  // Prompt user for criteria input and append userInput array
+  // Prompt user for criteria and concatenate criteria string
   if (confirm("Do you want lowercase letters?")) {
-    userInput.push(lowercaseInput);
+    criteria += lowerLetters;
   }
   if (confirm("Do you want uppercase letters?")) {
-    userInput.push(uppercaseInput);
+    criteria += upperLetters;
   }
   if (confirm("Do you want numbers?")) {
-    userInput.push(numericInput);
+    criteria += numbers;
   }
   if (confirm("Do you want special characters?")) {
-    userInput.push(specialInput);
+    criteria += specialChars;
   }
-  return userInput;
+  return criteria;
 }
 
-// Generage password
+// Generate password
 function generatePassword() {
   // Create empty password string
   var password = "";
-  var getInputs = getCriteria();
-  // Propmpt user to enter desired password length
-  var passwordLengthInput = (prompt("Enter a numeric length greater than 8 and less than 128 characters."));
-  var passwordLength = parseInt(passwordLengthInput);
+  var criteria = getCriteria();
+
+  // Prompt user to enter desired password length
+  var desiredLengthInput = (prompt("Enter a desired password length (minimum: 8, maximum: 128 characters.")); // string
+  var passwordLength = parseInt(desiredLengthInput); // integer
 
   // Validate password length
   if (passwordLength < 8) {
@@ -45,13 +46,12 @@ function generatePassword() {
     return '';
   }
 
-  // Select random numbers for each index of passwordLength
+  // Select random numbers 
   var randomInt;
-  for (i = 0; i < passwordLength.length; i++) {
-    randomInt = Math.floor(Math.random() * Math.floor(getInputs.length));
-    password += getInputs[randomInt];
+  for (i = 0; i < passwordLength; i++) {
+    randomInt = Math.floor(Math.random() * Math.floor(criteria.length));
+    password += criteria[randomInt];
   }
-  console.log(password.length);
   return password;
 }
 
