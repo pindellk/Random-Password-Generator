@@ -1,4 +1,4 @@
-// Assignment Code
+// Create variable linked to #generate in index.html
 var generateBtn = document.querySelector("#generate");
 
 function getCriteria() {
@@ -34,7 +34,7 @@ function generatePassword() {
   var criteria = getCriteria();
 
   // Prompt user to enter desired password length
-  var desiredLengthInput = (prompt("Enter a desired password length (minimum: 8, maximum: 128 characters.")); // string
+  var desiredLengthInput = (prompt("Enter a desired password length (minimum characters: 8, maximum characters: 128)")); // string
   var passwordLength = parseInt(desiredLengthInput); // integer
 
   // Validate password length
@@ -46,10 +46,11 @@ function generatePassword() {
     return '';
   }
 
-  // Select random numbers 
+  // Generate random integers for each index of the input password length 
   var randomInt;
   for (i = 0; i < passwordLength; i++) {
     randomInt = Math.floor(Math.random() * Math.floor(criteria.length));
+   // Append empty password string with random character from the criteria
     password += criteria[randomInt];
   }
   return password;
