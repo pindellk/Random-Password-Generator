@@ -12,8 +12,7 @@ The user is then prompted to enter a desired character length between 8 and 128 
 [Link to external site](https://pindellk.github.io/Random-Password-Generator/)
 
 
-
-![Random Password Generator](/.random_password_gen.jpg?raw=true "Here's a look!")
+![Image](./random_password_gen.png?)
 
 
 
